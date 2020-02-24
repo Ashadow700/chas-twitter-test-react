@@ -1,0 +1,13 @@
+.Login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 25vw;
+    height: 40vh;
+    background-color: #c4d1dd;
+
+    box-shadow: 5px 5px 10px grey;
+    border-radius: 10px;
+}

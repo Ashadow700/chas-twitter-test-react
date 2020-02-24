@@ -1,0 +1,36 @@
+.Tweets-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 50vw;
+    height: 80vh;
+    background-color: #c4d1dd;
+
+    box-shadow: 5px 5px 10px grey;
+    border-radius: 10px;
+}
+
+.Write-tweet-field {
+    height: 40%;
+    width: 80%;
+}
+
+.List {
+    display: flex;
+    flex-direction: column;
+
+    width: 80%;
+    height: 70%;
+
+    background-color: white;
+}
+
+.ListedItem {
+    padding-bottom: 10px;
+}
+
+.Selected-user {
+    background-color: #aab2dd;
+}
