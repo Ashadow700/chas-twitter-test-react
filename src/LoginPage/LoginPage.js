@@ -6,15 +6,7 @@ class LoginPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {userName: "", password: ""};
         this.state = {isLoginOpen: true, isRegisterOpen: false};
-    }
-    setUserName(changeEvent) {
-        this.setState({userName: changeEvent.target.value});
-    }
-
-    setPassword(changeEvent) {
-        this.setState({password: changeEvent.target.value});
     }
 
     showRegisterBox() {
@@ -37,7 +29,7 @@ class LoginPage extends Component {
                             Register
                         </button>
                     </div>
-                    {this.state.isRegisterOpen && <Register/>}
+                    {this.state.isRegisterOpen && <Register sendPostRequest={this.props.sendPostRequest}/>}
                     {this.state.isLoginOpen && <Login logIn={this.props.logIn}/>}
                 </div>
             </div>
@@ -49,17 +41,22 @@ class Login extends LoginPage {
 
     constructor(props) {
         super(props);
+        this.state = {userName: "", password: ""};
     }
-    render(props) {
 
+    setUserName(changeEvent) {
+        this.setState({userName: changeEvent.target.value});
+    }
+
+    setPassword(changeEvent) {
+        this.setState({password: changeEvent.target.value});
+    }
+
+    render(props) {
         return (
             <div className="Items">
-                <form>
-                    <input type="text" placeholder="Username" onChange={ (changeEvent) => super.setUserName(changeEvent)}/>
-                </form>
-                <form>
-                    <input type="password" placeholder="Password" onChange={super.setPassword.bind(this)}/>
-                </form>
+                <input type="text" placeholder="Username" onChange={ (changeEvent) => this.setUserName(changeEvent)}/>
+                <input type="password" placeholder="Password" onChange={this.setPassword.bind(this)}/>
                 <button className="Button" onClick={() => this.props.logIn(this.state.userName, this.state.password)}>
                     Login
                 </button>
@@ -80,33 +77,28 @@ class Register extends LoginPage {
     }
 
     setUserName(changeEvent) {
-        this.setState({registerUsername: changeEvent.target.value})
+        this.setState({registerUsername: changeEvent.target.value});
     }
 
     setPassword(changeEvent) {
-        this.setState({registerPassword: changeEvent.target.value})
+        this.setState({registerPassword: changeEvent.target.value});
     }
 
     setEmail(changeEvent) {
-        this.setState({registerEmail: changeEvent.target.value})
+        this.setState({registerEmail: changeEvent.target.value});
     }
 
     async registerUser() {
-        console.log("registering user");
-        const response = await fetch("http://localhost:8080/user/post", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                    username: this.state.registerUsername,
-                    password: this.state.registerPassword,
-                    email: this.state.registerEmail
-                })
-            })
+        console.log("Registering user");
+        const url = "http://localhost:8080/user/post";
+        const body = JSON.stringify({
+            username: this.state.registerUsername,
+            password: this.state.registerPassword,
+            email: this.state.registerEmail
+        });
 
-        console.log(response.status);
+        const response = await this.props.sendPostRequest(url, body);
+
         if (response.status == 201) {
             alert("User " + this.state.registerUsername + " was registered");
         } else {

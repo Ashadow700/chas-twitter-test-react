@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-
 import LoginPage from "./LoginPage/LoginPage";
 import TweetsPage from "./TweetsPage/TweetsPage";
 
@@ -14,6 +13,7 @@ class App extends Component {
         };
         this.logIn = this.logIn.bind(this);
         this.logOut = this.logOut.bind(this);
+        this.sendPostRequest = this.sendPostRequest.bind(this);
     }
 
     async logIn(username, password) {
@@ -36,11 +36,25 @@ class App extends Component {
         this.setState({isLoggedIn: false});
     }
 
+    async sendPostRequest(url, jsonBody) {
+        console.log("Sending POST request to " + url + " with jsonBody " + jsonBody);
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: jsonBody
+        })
+        return response;
+    }
+
     render() {
         return (
             <div className="Main-container">
-                {!this.state.isLoggedIn && <LoginPage logIn={this.logIn}/>}
-                {this.state.isLoggedIn && <TweetsPage loggedUsername={this.state.loggedUsername} logOut={this.logOut}/>}
+                {!this.state.isLoggedIn && <LoginPage logIn={this.logIn} sendPostRequest={this.sendPostRequest}/>}
+                {this.state.isLoggedIn && <TweetsPage loggedUsername={this.state.loggedUsername} logOut={this.logOut} sendPostRequest={this.sendPostRequest}/>}
             </div>
         );
     }

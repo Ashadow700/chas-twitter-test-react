@@ -4,26 +4,9 @@ This is a very simple demo GUI intended to function as a basic twitter clone. It
 created by the Spring program 'ChasTwitterTest'.
 
 ---------------------------------------------------------------------------------------------------------
-Known issues:
-
-The system is currently a hacker's dream as it provides virtually no security of any kind. I did not implement these
-in order to save time and because the tests specification did not ask for additional security features.
-
-The worst offenders are the following:
-  - Passwords are currently stored in plaintext as opposed to being encrypted. Unacceptable in a production environment
-  - All Apis are wide open and don't check the credentials of the client. Again, unacceptable for any real system.
-
-When the GUI is opened in a browser, it's CORS policy may prevent it from accessing the API. The circumvent this problem,
-a possible solution is to install a plugin to the browers that temporarily disables the CORS policy.
-Another solution is creating a shortcut to Google Chrome with CORS disabled:
-  - Right click on desktop, add new shortcut
-  - Add the target as "[PATH_TO_CHROME]\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
-  - Click OK.
-
----------------------------------------------------------------------------------------------------------
 Preparation:
 
-This program can only be run on a with the program 'ChasTwitterTest' running on it.
+This program can only be run on a system with the program 'ChasTwitterTest' running on it.
 
 The app can only be run on a system with node.js installed on it.
 
@@ -33,3 +16,20 @@ Starting the program:
 To start the program, run
  - npm start
 See the full React documentation here: https://reactjs.org/docs/getting-started.html
+
+---------------------------------------------------------------------------------------------------------
+Known issues:
+
+The system is currently a hacker's dream as it provides virtually no security of any kind. I did not implement these
+in order to save time and because the test's specification did not ask for additional security features.
+
+The worst offenders are the following:
+  - Passwords are currently stored in plaintext as opposed to being encrypted. Unacceptable in a production environment
+  - All Apis are wide open and don't check the credentials of the client. Again, unacceptable for any real system.
+
+When the GUI is opened in a browser, it's CORS policy may prevent it from accessing the API. To circumvent this problem,
+a possible solution is to install a plugin to the browser that temporarily disables the CORS policy.
+Another solution is creating a shortcut to Google Chrome with CORS disabled:
+  - Right click on desktop, add new shortcut
+  - Add the target as "[PATH_TO_CHROME]\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
+  - Click OK.
