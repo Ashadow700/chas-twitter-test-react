@@ -3,6 +3,9 @@ Introduction:
 This is a very simple demo GUI intended to function as a basic twitter clone. It is intended to be run along side the API
 created by the Spring program 'ChasTwitterTest'.
 
+By the way - please don't judge to project too harshly. This was the first GUI I ever created using REACT, and it was all written 
+in literally just 2 days. So.... yeah, the quality is not the best as a result.
+
 ---------------------------------------------------------------------------------------------------------
 Preparation:
 
